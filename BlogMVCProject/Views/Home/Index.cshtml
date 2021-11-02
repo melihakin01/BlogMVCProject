@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BlogMVCProject.Models.MakaleModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-8">
+            <!--MakaleListesi-->
+            @foreach (var item in Model)
+            {
+                <div class="card-group">
+                    <div class="card">
+                        <img class="card-img-top" src="/Content/images/@item.Resim" alt="Card image cap" height="300">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Baslik</h5>
+                            <p class="card-text">@item.Aciklama</p>
+                            <a href="/Home/Detay/@item.Id" class="btn btn-primary">Devamını Oku...</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"><i class="bi bi-clock" style="font-size:20px"></i> @item.YayinTarih.ToString("dd-MM-yyyy") - <i class="bi bi-eye" style="font-size:20px"></i> @item.Goruntulenme Görüntülenme - <i class="bi bi-chat-left" style="font-size:20px"></i> @item.yorum.Count Yorum</small>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            }
+
+
+        </div>
+        <div class="col-md-4">
+            <!--KategoriListesi-->
+            @Html.Action("KategoriListesi","Kategori")
+            <br />
+            @Html.Action("EnCokOkunan","Home")
+        </div>
+
+    </div>
+
+</div>
