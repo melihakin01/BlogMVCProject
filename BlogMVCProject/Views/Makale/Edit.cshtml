@@ -35,7 +35,7 @@
     <div class="row mb-3" style="text-align:center">
         @Html.LabelFor(model => model.Resim, "Resim", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-6">
-            @Html.EditorFor(model => model.Resim, new { htmlAttributes = new { @class = "form-control" } })
+            <input type="file" name="File" class="form-control"/>
             @Html.ValidationMessageFor(model => model.Resim, "", new { @class = "text-danger" })
         </div>
     </div>
