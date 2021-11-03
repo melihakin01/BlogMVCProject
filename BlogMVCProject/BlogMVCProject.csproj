@@ -127,8 +127,11 @@
     <Content Include="Content\images\Anakart.jpg" />
     <Content Include="Content\images\ekran-kartı.jpg" />
     <Content Include="Content\images\facebook-icon.png" />
+    <Content Include="Content\images\githublogo.jpg" />
     <Content Include="Content\images\islemci.jpg" />
     <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logo1.jpg" />
+    <Content Include="Content\images\makale.jpg" />
     <Content Include="Content\images\twitter-icon.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -186,6 +189,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup1.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\MakaleController.cs" />
@@ -238,6 +242,10 @@
     <Content Include="Views\Home\Ara.cshtml" />
     <Content Include="Views\Shared\Arama.cshtml" />
     <Content Include="Views\Home\EnCokOkunan.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\YazarListesi.cshtml" />
+    <Content Include="Views\Admin\OnayListesi.cshtml" />
+    <Content Include="Views\Admin\OnaysizListesi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
