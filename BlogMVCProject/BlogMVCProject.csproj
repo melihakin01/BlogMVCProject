@@ -130,6 +130,7 @@
     <Content Include="Content\images\githublogo.jpg" />
     <Content Include="Content\images\islemci.jpg" />
     <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logo1.jpg" />
     <Content Include="Content\images\makale.jpg" />
     <Content Include="Content\images\twitter-icon.png" />
     <Content Include="Content\Site.css" />
