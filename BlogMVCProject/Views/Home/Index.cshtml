@@ -1,4 +1,6 @@
-﻿@model IEnumerable<BlogMVCProject.Models.MakaleModel>
+﻿@model PagedList<BlogMVCProject.Models.MakaleModel>
+@using PagedList;
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
 }
@@ -25,6 +27,7 @@
                 </div>
                 <br />
             }
+            @Html.PagedListPager(Model ,sayi=>Url.Action("index",new { sayi}))
 
 
         </div>

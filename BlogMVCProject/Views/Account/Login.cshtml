@@ -16,7 +16,7 @@
             <!--MakaleListesi-->
             <div class="img-thumbnail">
                 <br />
-                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "row" }))
+                @using (Html.BeginForm("Login", "Account", new { @class = "row",ReturnUrl=Request.QueryString["ReturnUrl"], FormMethod.Post }))
                 {
                     
                     <div class="row mb-3" style="text-align:center">

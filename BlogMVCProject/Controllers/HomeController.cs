@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace BlogMVCProject.Controllers
 {
@@ -11,7 +13,7 @@ namespace BlogMVCProject.Controllers
     {
         DataContext db = new DataContext();
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(int sayi=1)
         {
             var makale = db.Makales.Where(i => i.Onay == true).Select(i => new MakaleModel()
             {
@@ -24,7 +26,7 @@ namespace BlogMVCProject.Controllers
                 Goruntulenme=i.Goruntulenme,
                 yorum=i.yorum,
                 Aciklama=i.Aciklama.Length>60?i.Aciklama.Substring(0,60)+("[...]"):i.Aciklama
-            }).ToList();
+            }).ToList().ToPagedList(sayi,3);
             return View(makale);
         }
         public ActionResult MakaleListesi(int ? id)
@@ -48,13 +50,34 @@ namespace BlogMVCProject.Controllers
         }
         public ActionResult Detay(int id)
         {
+            var sonuc = (from ortalama in db.Yorums
+                         where ortalama.MakaleId == id
+                         select ortalama.Puan).DefaultIfEmpty(0).Average();
+            ViewBag.ortalama = Math.Round(sonuc);
+
             var makale = db.Makales.Find(id);
             ViewBag.makale = makale;
 
             var sayi = db.Makales.ToList().Find(x => x.Id == id);
             sayi.Goruntulenme += 1;
             db.SaveChanges();
-            return View();
+
+            ViewBag.sayi = db.Yorums.ToList().Where(i => i.MakaleId == id).Count();
+
+            var yorum = new Yorum()
+            {
+                MakaleId = makale.Id
+            };
+            return View("Detay",yorum);
+        }
+        public ActionResult YorumGonder(Yorum yorum ,int rating)
+        {
+            yorum.KullaniciId = User.Identity.Name;
+            yorum.Tarih = DateTime.Now;
+            yorum.Puan = Convert.ToInt32(rating);
+            db.Yorums.Add(yorum);
+            db.SaveChanges();
+            return RedirectToAction("Detay","Home",new { id = yorum.MakaleId });
         }
     }
 }

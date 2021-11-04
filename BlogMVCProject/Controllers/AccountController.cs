@@ -64,7 +64,7 @@ namespace BlogMVCProject.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(Login model)
+        public ActionResult Login(Login model, string ReturnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,15 @@ namespace BlogMVCProject.Controllers
                     var autProperties = new AuthenticationProperties();
                     autProperties.IsPersistent = model.RememberMe;
                     autManager.SignIn(autProperties, identityclaims);
-                    return RedirectToAction("Index", "Home");
+                    if (ReturnUrl==null)
+                    {
+return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return Redirect(ReturnUrl);
+                    }
+                    
                 }
                 else
                 {
