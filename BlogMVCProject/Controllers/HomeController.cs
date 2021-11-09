@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace BlogMVCProject.Controllers
 {
+    //
     public class HomeController : Controller
     {
         DataContext db = new DataContext();
