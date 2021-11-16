@@ -16,5 +16,6 @@ namespace BlogMVCProject.Models
         [DisplayName("Şifre")]
         public string Password { get; set; }
         public bool RememberMe { get; set; }
+
     }
 }
